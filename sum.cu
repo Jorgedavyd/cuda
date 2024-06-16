@@ -30,7 +30,7 @@ __global__ void kernel (torch::Tensor input, torch::Tensor other, torch::Tensor 
     }
 }
 
-__host__ torch::Tensor forward (torch::Tensor& input, torch::Tensor& other) {
+torch::Tensor forward (torch::Tensor& input, torch::Tensor& other) {
     KernelParams kernelParams = getKernelParams(input);
     torch::Tensor out = torch::empty_like(input);
     kernel<<<kernelParams.n_blocks, kernelParams.n_threads>>>(input, other, out);
