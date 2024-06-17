@@ -30,7 +30,9 @@ __global__ void kernel (
 torch::Tensor forward (torch::Tensor& input, torch::Tensor& other) {
     const unsigned int batch_size = input.size(0);
     const unsigned int num_heads = input.size(1);
-    kernel<<<batch_size, 
+    torch::Tensor out = torch::empty_like(input);
+    kernel<<<batch_size, num_heads>>>(input, other, out);
+    return out;
 }
 
 int main (void) {
