@@ -1,5 +1,4 @@
-#include <cuda.h>
-#include <torch/extensions.h>
+#include <torch/extension.h>
 
 template <typename T>
 __global__ __cluster_dim__(1,1,1)/*cluster for d shared memory between blocks*/ void multKernel (
@@ -37,4 +36,4 @@ int main (void) {
     torch::Tensor other = torch::randn({10, 10}, torch::device(torch::kCUDA));
     torch::Tensor out = forward(input, other);
     return 0;
-}
+};

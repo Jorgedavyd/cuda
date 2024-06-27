@@ -1,6 +1,6 @@
-#include <torch/extensions.h>
-#include <cuda.h>
+#include <torch/extension.h>
 #include <math.h>
+
 /*
 query: (batch_size, num_heads, sequence, head_dim)
 values: (batch_size, num_heads, sequence, head_dim)
@@ -10,20 +10,20 @@ out = single_query@single_key.T/sqrt(d_model).apply(softmax)@v
 
 threads(num_heads) -> blocks(num_batches) -> clusters (1)-> grid (1)
 */
-namespace F = torch::nn::functional
 
-template <typename T>
+namespace F = torch::nn::functional;
+
 __global__ void kernel (
-    torch::Tensor<T> query,
-    torch::Tensor<T> key,
-    torch::Tensor<T> value,
+    torch::Tensor query,
+    torch::Tensor key,
+    torch::Tensor value,
     const float d_model,
-    torch::Tensor<T>* out
+    torch::Tensor& out
 ) {
     const unsigned int x = threadIdx.x + blockDim.x * blockIdx.x;
     const unsigned int batch = blockIdx.x;
-    if (batch <= input.size(0)) {
-        *out[batch][x] = torch::addmm(F::softmax(torch::addmm(query, key.transpose(-1, -2)) / sqrt(d_model), -1), value)
+    if (batch <= query.size(0)) {
+        
     }
 }
 

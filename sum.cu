@@ -1,5 +1,5 @@
+#include <torch/extension.h>
 #include <cuda.h>
-#include <torch/extensions.h>
 
 
 __host__ __forceinline__ unsigned int product (torch::Tensor& input) {
