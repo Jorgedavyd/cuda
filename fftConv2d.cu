@@ -6,11 +6,11 @@
 __global__ void main_kernel (void) {
     
 }
-
-__host__ __forceinline__ std::vector<auto> CREATE_ITERABLE (
+template<typename T>
+std::vector<T> CREATE_ITERABLE (
     torch::Tensor * input, 
     std::vector<std::vector<int>> * parameters
-)
+);
 
 template <typename scalar_t>
 torch::Tensor seqConv2d(
