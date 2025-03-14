@@ -15,7 +15,7 @@ __global__ __cluster_dim__(1,1,1)/*cluster for d shared memory between blocks*/ 
     if (x_block < input.size(-2) && y_block < input.size(-1)) {
         *out[x_block][y_block] += input[x_block][x_thread] + other[x_thread][y_block]
     }
-}
+};
 
 torch::Tensor forward (torch::Tensor input, torch::Tensor other) {
     CHECK_INPUT(input);
@@ -26,7 +26,7 @@ torch::Tensor forward (torch::Tensor input, torch::Tensor other) {
     dim3 gridSize(input.size(0), other.size(1), 1); // Like the output size of the matrix
     const unsigned int prods = input.size(1); // Number of linear operations per location
     // Running the kernel
-    multKernel<float><<<gridSize, prods>>>(input, other, &out); 
+    multKernel<float><<<gridSize, prods>>>(input, other, &out);
     // returning the output
     return out;
 }

@@ -33,7 +33,7 @@ __global__ void tensor_core_matmul(half* W, half* X, float* Y, int m, int n, int
 }
 
 int main() {
-    const int M = 16, N = 8, K = 16;  // WMMA tile sizes
+    const int M = 32, N = 16, K = 32;  // WMMA tile sizes
     half *d_W, *d_X;
     float *d_Y;
 

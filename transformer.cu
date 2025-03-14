@@ -12,7 +12,7 @@ __host__ __forceinline__ void ASSERTIONS (
     std::vector<std::vector<torch::Tensor>> * cross_weights,
     std::vector<std::vector<torch::Tensor>> * ffn_weights
 ) {
-    
+
 }
 
 torch::Tensor self_cross_ffn (
@@ -28,10 +28,10 @@ torch::Tensor transformer_fwd (
     torch::Tensor input,
     torch::
 ) {
-    
+
     // Serializing all into a stream and creating a graph
 
-    
+
 }
 
 torch::Tensor transformer_bwd (
